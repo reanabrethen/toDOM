@@ -89,11 +89,13 @@ console.log(todos)
 // A function that refreshes our page by calling each of the two above functions. Since printing all todos onto the DOM is based on our todos array, if we make a change to our todos array, we can simply call this function, which will make our DOM match our todos array by simply clearing the page and repopulating it according to our todos' new state.
 
 function refresh(){
-    if(clearAll(todos)){
+    if(todos === complete){
+      clearAll(todos)
+    }else{
     return printAll(todos)
   }
 }
-console.log(refresh)
+console.log(todos)
 
 /*
 Let's wire it all together. Add an event listener for the add todo button that will:
@@ -104,7 +106,7 @@ Let's wire it all together. Add an event listener for the add todo button that w
 5. Stretch goal: remove all text from the input box. Try adding multiple todos without this first, you'll see why we should do it!
 */
 
-addToDo = document.querySelector('.add-todo')
+newToDo = document.querySelector('.add-todo')
 
 
 const todoText = document.querySelector('.todo-input')
@@ -115,11 +117,10 @@ const todoText = document.querySelector('.todo-input')
           complete: false
         }
       }
-//  const toDo = createToDo(todoText)
 
-addToDo.addEventListner('click', createToDo)
+newToDo.addEventListner('click', ()=>createToDo(todoText.value))
 
-console.log(addToDo)
+console.log(newToDo)
 /* 
  Run over to the HTML and add a button for CLEAR TODOS or REMOVE TODOS or some such, giving it a class or id of your choice. Now let's wire up that button, giving it a click event listener that clears all todos from the DOM (we have a function for that!) and removes all todo objects from the todos array as well.
 */
